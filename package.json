@@ -1,0 +1,27 @@
+{
+  "name": "node-blog",
+  "version": "1.0.0",
+  "description": "node,blog",
+  "main": "",
+  "scripts": {
+    "server": "node server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:huangw1/node-blog.git"
+  },
+  "keywords": [
+    "node",
+    "blog"
+  ],
+  "author": {
+    "name": "huangw1",
+    "email": "1534410703@qq.com"
+  },
+  "license": "MIT",
+  "dependencies": {
+    "art-template": "*",
+    "formidable": "*",
+    "xss": "*"
+  }
+}
