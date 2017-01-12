@@ -4,7 +4,9 @@
 
 const formidable = require('formidable')
 const path       = require('path')
-const xss        = require('xss')
+const Xss        = require('../common/xss')
+
+const xss        = new Xss()
 
 /**
  * 封装为promise
@@ -23,19 +25,17 @@ function handlePost(context, options) {
             resolve({fields: fields, files: files})
         })
         form.on('field', function(name, value) {
-            //console.log(name, value)
             if(fields[name]) {
                 if(Array.isArray(fields[name])) {
-                    fields[name].push(value)
+                    fields[name].push(xss.filter(value))
                 } else {
-                    fields[name] = [fields[name], value]
+                    fields[name] = [fields[name], xss.filter(value)]
                 }
             } else {
-                fields[name] = value
+                fields[name] = xss.filter(value)
             }
         })
         form.on('file', function(name, file) {
-            //console.log(name, file)
             if(files[name]) {
                 if(Array.isArray(files[name])) {
                     files[name].push(file)
@@ -61,7 +61,6 @@ module.exports = function postMiddleware(options) {
         if(['get', 'head', 'delete'].indexOf(this.request.method) === -1) {
             body = yield handlePost(this, options)
         }
-        console.log('postMiddleware: ', body)
         this.request.body = body
         yield *next
     }

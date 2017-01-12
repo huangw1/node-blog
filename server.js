@@ -65,6 +65,7 @@ app.use(function *(next) {
         list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他']
     }
     this.renderView('index', data)
+    log.info(this.request.body)
     yield *next
 })
 

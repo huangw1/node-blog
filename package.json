@@ -21,7 +21,6 @@
   "license": "MIT",
   "dependencies": {
     "art-template": "*",
-    "formidable": "*",
-    "xss": "*"
+    "formidable": "*"
   }
 }
