@@ -23,9 +23,12 @@ const enums       = (
 
 const postMiddleware = require('./middleware/handlePost')
 
+const Route          = require('./middleware/route')
+const route          = new Route()
+
 /**
  * set static resource
- */
+  */
 app.setStatic(path.resolve(__dirname, 'public'))
 
 /**
@@ -57,6 +60,28 @@ app.use(function *(next) {
 app.use(postMiddleware())
 
 /**
+ * route map
+ */
+route.get('/user/:id/:uid', function *(next) {
+    log.info('request enter the :path.')
+    var data = {
+        title: '标签',
+        list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他']
+    }
+    console.log('this.request.params', this.request.params)
+    this.renderView('index', data)
+})
+route.get('/index', function *(next) {
+    log.info('request enter the index.')
+    var data = {
+        title: '标签',
+        list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他']
+    }
+    this.renderView('index', data)
+})
+app.use(route.middleware())
+
+/**
  * session: 获取session.get() session.set({})
  */
 app.use(function *(next) {
@@ -65,7 +90,7 @@ app.use(function *(next) {
         list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他']
     }
     this.renderView('index', data)
-    log.info(this.request.body)
+    log.info('body: ', this.request.body)
     yield *next
 })
 

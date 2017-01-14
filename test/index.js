@@ -1,7 +1,7 @@
 
 const Log = require('../lib/log')
 const log = new Log('info')
-const uuid = require('../lib/uuid')
+const uuid = require('../common/uuid')
 const url  = require('url')
 const qs   = require('querystring')
 

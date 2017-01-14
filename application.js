@@ -23,6 +23,7 @@ const log      = new Log(config.level)
  */
 function Application() {
     this.middleware = []
+    this.routes = []
     this.request = {}
     this.response = {}
     this.sessionManager = new session.SessionManage(config.cookie.timeout)

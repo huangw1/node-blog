@@ -3,7 +3,7 @@
  */
 
 const util   = require('util')
-const uuid   = require('../lib/uuid')
+const uuid   = require('../common/uuid')
 const config = require('../config')
 
 /**
@@ -51,8 +51,7 @@ SessionManage.prototype = {
         this._sessions[sessionId] = session
         res.cookie({
             key: [config.cookie.key],
-            value: sessionId,
-            path: '/',
+            value: sessionId,            path: '/',
             expires: new Date().getTime() + config.cookie.timeout
         })
         return session
