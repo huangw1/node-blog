@@ -1,0 +1,17 @@
+{
+  "apps": [
+    {
+      "name"  : "node-blog",
+      "script": "server.js",
+      "cwd"   : "./",
+      "watch" : [
+        "models",
+        "view",
+        "routes"
+      ],
+      "out_file"       : "./logs/vennoor.com/server.log",
+      "error_file"     : "./logs/vennoor.com/error.log",
+      "log_date_format": "YYYY-MM-DD HH:mm Z"
+    }
+  ]
+}

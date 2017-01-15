@@ -68,11 +68,10 @@ route.get('/user/:id/:uid', function *(next) {
         title: '标签',
         list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他']
     }
-    console.log('this.request.params', this.request.params)
+    //console.log('this.request.params', this.request.params)
     this.renderView('index', data)
 })
 route.get('/index', function *(next) {
-    log.info('request enter the index.')
     var data = {
         title: '标签',
         list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他']
@@ -90,12 +89,11 @@ app.use(function *(next) {
         list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他']
     }
     this.renderView('index', data)
-    log.info('body: ', this.request.body)
+    //log.info('body: ', this.request.body)
     yield *next
 })
 
 app.use(function *(next) {
-    log.info(this.request.path)
     yield *next
 })
 
