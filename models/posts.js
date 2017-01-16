@@ -9,6 +9,25 @@ const postSchema = mongoose.Schema({
     auth: String,
     tags: String,
     content: String,
-    create_time: {type: Date, default: Date.time()},
-    update_time: {type: Date, default: Date.time()}
+    create_time: {type: Date, default: Date.now()},
+    update_time: {type: Date, default: Date.now()}
 })
+
+const postModel = mongoose.model('post', postSchema)
+
+module.exports = {
+    createPost: function(data) {
+        var post = new postModel(data)
+        return post.save()
+    },
+    getPostList: function() {
+        return postModel.find().lean().sort({date: -1}).exec()
+    },
+    getPostById: function(query) {
+        return postModel.findOne(query).exec()
+    },
+    updatePost: function(query, data) {
+        return postModel.update(query, data).exec()
+    }
+}
+

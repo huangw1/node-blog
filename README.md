@@ -2,7 +2,7 @@
 
 博客初期基于静态markdown，编写命令行工具维护多份文章映射表。后期出于巩固node知识的目的，原生封装了node，使之具备一个框架的基本功能。
 
-<!-- 使用[mongodb](http://www.mongodb.org/)做存储 -->
+使用[mongodb](http://www.mongodb.org/)做存储。node-blog专注于文字，后台只提供文章创建和修改。
 
 ##功能模块
 

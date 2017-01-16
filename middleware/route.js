@@ -43,12 +43,15 @@ proto.middleware = function () {
             var pathRegexp = new RegExp(route.path.replace(paramRegexp, '(\\w+)'))
 
             if(params) {
-                request.params = {}
                 if((method === route.method || method === 'all') && (match = path.match(pathRegexp))) {
-                    params.forEach(function(param, index) {
-                        request.params[param.slice(1)] = match[index +1].slice(1)
-                    })
-                    next = route.fn.call(that, next)
+                    if(match[0] === path) {
+                        request.params = {}
+                        params.forEach(function(param, index) {
+                            request.params[param.slice(1)] = match[index +1]
+                        })
+                        next = route.fn.call(that, next)
+                    }
+
                 }
             } else {
                 if((method === route.method || method === 'all') && (route.path === '*' || route.path === path)) {

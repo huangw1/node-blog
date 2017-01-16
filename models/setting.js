@@ -8,8 +8,8 @@ const settingSchema = mongoose.Schema({
     blog_name: String,
     blog_description: String,
     blog_keyword: String,
-    create_time: {type: Date, default: Date.time()},
-    update_time: {type: Date, default: Date.time()}
+    create_time: {type: Date, default: Date.now()},
+    update_time: {type: Date, default: Date.now()}
 })
 
 const settingModel = mongoose.model('setting', settingSchema)

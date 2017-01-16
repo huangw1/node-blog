@@ -13,7 +13,7 @@ body {
 }
 .container {
 	width:960px;
-	margin:0 auto 0 auto;
+	margin:24px auto 0 auto;
 	position: relative;
 }
 .nav {
@@ -38,8 +38,8 @@ body {
 	padding-top: 24px;
 	overflow:hidden;
 	position:relative;
-	box-shadow: 0 0 4px #ebebeb;
-	-webkit-box-shadow: 0 0 4px #ebebeb;
+	box-shadow: 0 1px 6px #ccc;
+	-webkit-box-shadow: 0 1px 6px #ccc;
 }
 .history-date {
 	overflow:hidden;
@@ -132,4 +132,20 @@ body {
 }
 .history-date h2.first .more-history:hover {
 	text-decoration:underline;
+}
+
+/* 文字列表 */
+.article {
+	padding: 12px 24px;
+	box-shadow: 0 1px 6px #ccc;
+	-webkit-box-shadow: 0 1px 6px #ccc;
+}
+.article-header {
+	padding: 24px 0;
+	font-size: 30px;
+	text-align: center;
+	border-bottom: 1px solid #ebebeb;
+}
+.article-body {
+	padding: 24px 0;
 }

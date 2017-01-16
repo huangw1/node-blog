@@ -7,8 +7,8 @@ const mongoose = require('./connection')
 const adminSchema = mongoose.Schema({
     user_name: String,
     pass_word: String,
-    create_time: {type: Date, default: Date.time()},
-    update_time: {type: Date, default: Date.time()}
+    create_time: {type: Date, default: Date.now()},
+    update_time: {type: Date, default: Date.now()}
 })
 
 const adminModel = mongoose.model('admin', adminSchema)
@@ -18,8 +18,8 @@ module.exports = {
         var admin = new adminModel(data)
         return admin.save()
     },
-    getAdminList: function() {
-        return adminModel.findOne().exec()
+    getAdmin: function(query) {
+        return adminModel.findOne(query).exec()
     },
     updateAdmin: function(query, data) {
         return adminModel.update(query, data).exec()

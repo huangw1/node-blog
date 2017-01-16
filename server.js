@@ -3,6 +3,8 @@
  */
 
 const Application = require('./application')
+const frontRoute  = require('./routes')
+const backRoute   = require('./routes/admin')
 const errors      = require('./lib/exception')
 const config      = require('./config')
 const path        = require('path')
@@ -27,6 +29,12 @@ const Route          = require('./middleware/route')
 const route          = new Route()
 
 /**
+ * url route
+ */
+frontRoute(route)
+backRoute(route)
+
+/**
  * set static resource
   */
 app.setStatic(path.resolve(__dirname, 'public'))
@@ -49,47 +57,23 @@ app.use(function *(next) {
             case enums.ServerError:
                 break
             default:
+                console.log('exception: ', exception)
                 break
         }
     }
 })
 
 /**
- * post data
+ * middleware
  */
 app.use(postMiddleware())
-
-/**
- * route map
- */
-route.get('/user/:id/:uid', function *(next) {
-    log.info('request enter the :path.')
-    var data = {
-        title: '标签',
-        list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他']
-    }
-    //console.log('this.request.params', this.request.params)
-    this.renderView('index', data)
-})
-route.get('/index', function *(next) {
-    var data = {
-        title: '标签',
-        list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他']
-    }
-    this.renderView('index', data)
-})
 app.use(route.middleware())
 
 /**
  * session: 获取session.get() session.set({})
  */
 app.use(function *(next) {
-    var data = {
-        title: '标签',
-        list: ['文艺', '博客', '摄影', '电影', '民谣', '旅行', '吉他']
-    }
-    this.renderView('index', data)
-    //log.info('body: ', this.request.body)
+    this.renderView('index', {})
     yield *next
 })
 

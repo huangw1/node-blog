@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" class="index-page">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/css/admin.css"/>
+    <link rel="stylesheet" href="/plugin/editor/css/wangEditor.min.css"/>
+    <script src="/js/jquery.js"></script>
+    <script src="/plugin/editor/js/wangEditor.min.js"></script>
+    <script src="/js/admin.js"></script>
+</head>
+<body>
+<div class="common-header">
+    <div class="slogan float-left">NODE-BLOG</div>
+    <div class="dropdown float-right user-name">1534410703@qq.com <svg class="icon" style="width: 1em; height: 1em;vertical-align: middle;fill: currentColor;overflow: hidden;" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2963"><path d="M512 768c-8 0-16-3.2-22.4-9.6l-384-384c-12.8-12.8-12.8-32 0-44.8 12.8-12.8 32-12.8 44.8 0L512 691.2l361.6-361.6c12.8-12.8 32-12.8 44.8 0 12.8 12.8 12.8 32 0 44.8l-384 384c-6.4 6.4-14.4 9.6-22.4 9.6z" p-id="2964"></path></svg>
+        <ul class="down-list">
+            <li>退出</li>
+        </ul>
+    </div>
+</div>
+<div class="common-body">
+    <div class="action-list">
+        <a href="/admin/articles" class="action">文章列表</a><a href="/admin/article/new" class="action">新建文章</a>
+    </div>
+    <div class="media-body">
+        <form method="post" class="post-form" action="">
+            <div class="article-info">
+                <input type="text" name="title" placeholder="文章标题" value="{{article && article.title}}">
+                <input type="text" name="auth" placeholder="作者" value="{{article && article.auth}}">
+                <input type="text" name="tags" placeholder="文章分类，多个以,分隔" value="{{article && article.tags}}">
+            </div>
+            <div id="editor-container" class="container">
+                <div id="editor-trigger" class="editor-body">
+                </div>
+                <textarea style="display:none;" class="editor-content" name="content">
+                    {{if article}}
+                        {{article.content}}
+                    {{/if}}
+                </textarea>
+            </div>
+            <div class="action-list">
+                <button type="submit" class="action action-submit">
+                    {{if article}}
+                    更新
+                    {{else}}
+                    保存
+                    {{/if}}
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
+</body>
+</html>
