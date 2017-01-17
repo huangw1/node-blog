@@ -23,6 +23,7 @@
     "art-template": "*",
     "formidable": "*",
     "mongoose": "*",
-    "bluebird": "*"
+    "bluebird": "*",
+    "moment": "*"
   }
 }

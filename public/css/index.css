@@ -4,6 +4,10 @@
 	padding:0;
 	list-style-type:none;
 }
+a {
+	color: #333;
+	text-decoration: none;
+}
 a, img {
 	border:0;
 	text-decoration: none;
@@ -47,11 +51,11 @@ body {
 }
 .history-date h2 {
 	/*height:59px;*/
-	font-size:25px;
+	font-size:20px;
 	font-family: '微软雅黑';
 	font-weight:normal;
 	padding-left:45px;
-	margin-bottom:38px;
+	margin-bottom:14px;
 	background: #fff;
 }
 .history-date h2.first {
@@ -60,26 +64,29 @@ body {
 	top:0;
 	width:935px;
 	z-index:99;
+	cursor: pointer;
 }
 .history-date h2 a {
 	color:#00bbff;
 	display:inline-block;
 	background:#fff url(../images/arrow.gif) no-repeat right 50%;
 	padding-right:16px;
-	padding-left: 40px;
+	padding-left: 56px;
 	margin: 20px 24px 0 0;
 }
 .history-date h2 a:hover {
 	text-decoration:none;
 }
 .history-date h2 img {
+	padding-left: 4px;
 	vertical-align:-5px;
 }
-.history-date h2.date02 {
+.history-date h2.date-time {
 	background:none;
+	cursor: pointer;
 }
 .history-date ul li {
-	padding-bottom:32px;
+	padding-bottom:14px;
 	zoom:1;
 }
 .history-date ul li.last {
@@ -112,7 +119,7 @@ body {
 	font-family:'微软雅黑';
 }
 .history-date ul li dl dt {
-	font:20px/22px '微软雅黑';
+	font-size: 18px;
 	color:#737373;
 }
 .tag-index a {
@@ -122,7 +129,7 @@ body {
 	border-radius: 2px;
 	padding: 0 4px;
 	margin-right: 8px;
-	background: #bfeeff;
+	background: #99e4ff;
 	line-height: 1.4;
 }
 .history-date h2.first .more-history {
@@ -144,8 +151,55 @@ body {
 	padding: 24px 0;
 	font-size: 30px;
 	text-align: center;
-	border-bottom: 1px solid #ebebeb;
+	border-bottom: 1px dashed #ebebeb;
 }
 .article-body {
 	padding: 24px 0;
+}
+.tag-body {
+	padding: 8px 0;
+}
+.tag-body .tag-item {
+	padding: 4px 24px;
+	font-size: 14px;
+}
+.tag-header {
+	font-size: 16px;
+	padding: 4px 0;
+	border-bottom: 1px dashed #ebebeb;
+}
+
+.tag-header span {
+	color: #00bbff;
+	display: inline-block;
+	padding: 0 4px;
+	margin-right: 8px;
+	line-height: 1.4;
+}
+.error-404 {
+	font-size: 16px;
+}
+
+/* 排版 */
+p {
+	font-size: 14px;
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+
+h1, h2, h3 {
+	font-size: 16px;
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+
+pre {
+	border-radius: 2px;
+	margin: 8px 0;
+	border: 1px dashed #ebebeb;
+}
+
+ul li {
+	padding-top: 4px;
+	padding-bottom: 4px;
 }

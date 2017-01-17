@@ -108,7 +108,7 @@ function filterAttr(html, blackList) {
     return html.replace(REGEXP_ATTR_WITH_SPACE, function(kv) {
         var k = kv.split('=')[0].trim()
         if(blackList[k]) {
-            return ''
+            return ' '
         } else {
             return kv
         }

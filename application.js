@@ -55,12 +55,12 @@ App.handleSession = function () {
     if(sessionId && (session = this.sessionManager.get(sessionId))) {
         if(session.isTimeout) {
             this.sessionManager.remove(sessionId)
-            session = this.sessionManager.renew(this.response)
+            session = this.sessionManager.generate(this.response)
         } else {
             session.updateTime()
         }
     } else {
-        session = this.sessionManager.renew(this.response)
+        session = this.sessionManager.generate(this.response)
     }
     this.request.session = session
 }
@@ -86,7 +86,6 @@ App.dispatch = function() {
     return function(request, response) {
         this.request = Request(request)
         this.response = Response(response)
-
         if(ext = path.extname(this.request.path).slice(1)) {
             handler(this.response, this.staticPath + this.request.path, ext)
         } else {

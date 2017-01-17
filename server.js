@@ -73,11 +73,7 @@ app.use(route.middleware())
  * session: 获取session.get() session.set({})
  */
 app.use(function *(next) {
-    this.renderView('index', {})
-    yield *next
-})
-
-app.use(function *(next) {
+    this.renderView('404', {})
     yield *next
 })
 

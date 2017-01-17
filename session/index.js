@@ -12,23 +12,12 @@ const config = require('../config')
  */
 function Session(sessionId) {
     this.sessionId = sessionId
-    this._map = {}
 }
 Session.prototype = {
-    get: function(name) {
-        return this._map[name] || ''
-    },
-    set: function(session) {
-        Object.keys(session).forEach(function(key) {
-            this._map[key] = session[key]
+    remove: function() {
+        Object.keys(this).forEach(function(key) {
+            delete this[key]
         }.bind(this))
-    },
-    remove: function(name) {
-        delete this._map[name]
-    },
-    removeAll: function() {
-        delete this._map
-        this._map = {}
     },
     updateTime: function() {
         this._updateTime = Date.now()
@@ -44,7 +33,7 @@ SessionManage.prototype = {
     get: function(sessionId) {
         return this._sessions[sessionId]
     },
-    renew: function(res) {
+    generate: function(res) {
         var sessionId = uuid.getUid(),
             session = new Session(sessionId)
         session.updateTime()

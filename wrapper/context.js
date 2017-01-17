@@ -33,7 +33,7 @@ module.exports = {
     },
     redirect: function(path) {
         this.response.setHeader('Location', path)
-        this.response.writeHead(301)
+        this.response.writeHead(302)
         this.response.end()
     },
     renderView: function(view, data) {

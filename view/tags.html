@@ -1,0 +1,25 @@
+<!doctype html>
+<html lang="zh-CN" class="article-page">
+{{include './block/header'}}
+<body>
+<div class="container">
+    <div class="article">
+        <div class="tag-header">tag: <span>{{tag}}</span></div>
+        <div class="tag-body">
+            {{if articles.length}}
+                {{each articles as article}}
+                <li class="tag-item">
+                    <a href="/article/{{article.id}}">{{article.title}}</a>
+                </li>
+                {{/each}}
+            {{else}}
+                <li class="tag-item">
+                    <a href="/">该标签暂无文章</a>
+                </li>
+            {{/if}}
+        </div>
+    </div>
+</div>
+{{include './block/footer'}}
+</body>
+</html>

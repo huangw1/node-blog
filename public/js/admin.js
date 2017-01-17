@@ -22,12 +22,24 @@ $(function() {
         var method = this.method
         var data = $(this).serialize()
 
+        if(!data.match(/(^|&)user_name=([^&]*)(&|$)/)[2]) {
+            return alert('请填写用户名.')
+        }
+        if(!data.match(/(^|&)pass_word=([^&]*)(&|$)/)[2]) {
+            return alert('请填写密码.')
+        }
+
         $.ajax({
             url: action,
             method: method,
             data: data
         }).then(function(result) {
-            console.log(result)
+            if(result.code === 200) {
+                console.log('result: ', result)
+                location.href = result.redirect
+            } else {
+                alert('用户名或者密码错误.')
+            }
         })
 
         return false
@@ -81,7 +93,7 @@ $(function() {
         var submit = $('.post-form')
         submit.submit(postArticle)
     } catch (exception) {
-
+        console.log(exception)
     }
 
 })

@@ -23,9 +23,21 @@ module.exports = {
         key    : 'session-id'
     },
 
+    // user
+    user: {
+        user_name: 'test',
+        pass_word: 'test'
+    },
+
     // database
     database: {
         host: 'localhost:27017',
         db  : 'node-blog'
+    },
+    // default
+    info: {
+        title: 'huangw1\'blog',
+        description: 'sharing of work experience',
+        keywords: 'html, css, javascript, node'
     }
 }

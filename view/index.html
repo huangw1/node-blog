@@ -1,13 +1,6 @@
 <!doctype html>
 <html lang="zh-CN">
-<head>
-    <meta charset="UTF-8">
-    <title>Document</title>
-    <!--<meta name="viewport" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width">-->
-    <script src="/js/jquery.js"></script>
-    <script src="/js/index.js"></script>
-    <link rel="stylesheet" href="/css/index.css"/>
-</head>
+{{include './block/header'}}
 <body>
     <div class="container">
         <nav class="nav">
@@ -19,159 +12,46 @@
         <div class="history">
             <div class="history-date">
                 <ul>
-                    <h2 class="first"><a>2012年</a><img src="/images/profile-new.png"/>
+                    <h2 class="first"><a>{{now}}年</a><img src="/images/profile-new.png"/>
                     </h2>
-                    <li><h3>10.08<span>2012</span></h3>
-                        <dl>
-                            <dt>node深入浅出
-                                <div class="tag-index"><a>node</a><a>javascript</a><a>css</a></div>
-                            </dt>
-                        </dl>
-                    </li>
-                    <li><h3>07.19<span>2012</span></h3>
-                        <dl>
-                            <dt>javascript从入门到放弃
-                                <div class="tag-index"><a>node</a><a>javascript</a><a>css</a></div>
-                            </dt>
-                        </dl>
-                    </li>
-                    <li><h3>07.02<span>2012</span></h3>
-                        <dl>
-                            <dt>css不为人知的阴暗面
-                                <div class="tag-index"><a>node</a><a>javascript</a><a>css</a></div>
-                            </dt>
-                        </dl>
-                    </li>
-                    <li><h3>06.27<span>2012</span></h3>
-                        <dl>
-                            <dt>HTML5语义化
-                                <div class="tag-index"><a>node</a><a>javascript</a><a>css</a></div>
-                            </dt>
-                        </dl>
-                    </li>
-                    <li><h3>10.08<span>2012</span></h3>
-                        <dl>
-                            <dt>node深入浅出
-                                <div class="tag-index"><a>node</a><a>javascript</a><a>css</a></div>
-                            </dt>
-                        </dl>
-                    </li>
-                    <li><h3>07.19<span>2012</span></h3>
-                        <dl>
-                            <dt>javascript从入门到放弃
-                                <div class="tag-index"><a>node</a><a>javascript</a><a>css</a></div>
-                            </dt>
-                        </dl>
-                    </li>
-                    <li><h3>07.02<span>2012</span></h3>
-                        <dl>
-                            <dt>css不为人知的阴暗面
-                                <div class="tag-index"><a>node</a><a>javascript</a><a>css</a></div>
-                            </dt>
-                        </dl>
-                    </li>
-                    <li><h3>06.27<span>2012</span></h3>
-                        <dl>
-                            <dt>HTML5语义化
-                                <div class="tag-index"><a>node</a><a>javascript</a><a>css</a></div>
-                            </dt>
-                        </dl>
-                    </li>
+                    {{each resultByTime.now as id index}}
+                        {{each resultByTime.now[index] as article}}
+                        <li><h3>{{article.date}}<span>{{article.year}}</span></h3>
+                            <dl>
+                                <dt><a href="/article/{{article.id}}">{{article.title}}</a>
+                                    <div class="tag-index">
+                                        {{each article.tags as tag}}
+                                            <a href="/tags/{{tag}}">{{tag}}</a>
+                                        {{/each}}
+                                    </div>
+                                </dt>
+                            </dl>
+                        </li>
+                        {{/each}}
+                    {{/each}}
                 </ul>
             </div>
+            {{each resultByTime.articles as id index}}
             <div class="history-date">
-                <ul><h2 class="date02"><a>2011年</a></h2>
-                    <li><h3>10.08<span>2012</span></h3>
+                <ul><h2 class="date-time"><a>{{index}}年</a></h2>
+                    {{each resultByTime.articles[index] as article}}
+                    <li><h3>{{article.date}}<span>{{article.year}}</span></h3>
                         <dl>
-                            <dt>node深入浅出
-                                <div class="tag-index"><a>node</a><a>javascript</a><a>css</a></div>
+                            <dt><a href="/article/{{article.id}}">{{article.title}}</a>
+                                <div class="tag-index">
+                                    {{each article.tags as tag}}
+                                        <a href="/tags/{{tag}}">{{tag}}</a>
+                                    {{/each}}
+                                </div>
                             </dt>
                         </dl>
                     </li>
-                    <li><h3>07.19<span>2012</span></h3>
-                        <dl>
-                            <dt>javascript从入门到放弃
-                                <div class="tag-index"><a>node</a><a>javascript</a><a>css</a></div>
-                            </dt>
-                        </dl>
-                    </li>
-                    <li><h3>07.02<span>2012</span></h3>
-                        <dl>
-                            <dt>css不为人知的阴暗面
-                                <div class="tag-index"><a>node</a><a>javascript</a><a>css</a></div>
-                            </dt>
-                        </dl>
-                    </li>
-                    <li><h3>06.27<span>2012</span></h3>
-                        <dl>
-                            <dt>HTML5语义化
-                                <div class="tag-index"><a>node</a><a>javascript</a><a>css</a></div>
-                            </dt>
-                        </dl>
-                    </li>
-                    <li><h3>10.08<span>2012</span></h3>
-                        <dl>
-                            <dt>node深入浅出
-                                <div class="tag-index"><a>node</a><a>javascript</a><a>css</a></div>
-                            </dt>
-                        </dl>
-                    </li>
-                    <li><h3>07.19<span>2012</span></h3>
-                        <dl>
-                            <dt>javascript从入门到放弃
-                                <div class="tag-index"><a>node</a><a>javascript</a><a>css</a></div>
-                            </dt>
-                        </dl>
-                    </li>
-                    <li><h3>07.02<span>2012</span></h3>
-                        <dl>
-                            <dt>css不为人知的阴暗面
-                                <div class="tag-index"><a>node</a><a>javascript</a><a>css</a></div>
-                            </dt>
-                        </dl>
-                    </li>
-                    <li><h3>06.27<span>2012</span></h3>
-                        <dl>
-                            <dt>HTML5语义化
-                                <div class="tag-index"><a>node</a><a>javascript</a><a>css</a></div>
-                            </dt>
-                        </dl>
-                    </li>
+                    {{/each}}
                 </ul>
             </div>
-            <div class="history-date">
-                <ul><h2 class="date02"><a>2010年</a></h2>
-                    <li><h3>10.08<span>2012</span></h3>
-                        <dl>
-                            <dt>node深入浅出
-                                <div class="tag-index"><a>node</a><a>javascript</a><a>css</a></div>
-                            </dt>
-                        </dl>
-                    </li>
-                    <li><h3>07.19<span>2012</span></h3>
-                        <dl>
-                            <dt>javascript从入门到放弃
-                                <div class="tag-index"><a>node</a><a>javascript</a><a>css</a></div>
-                            </dt>
-                        </dl>
-                    </li>
-                    <li><h3>07.02<span>2012</span></h3>
-                        <dl>
-                            <dt>css不为人知的阴暗面
-                                <div class="tag-index"><a>node</a><a>javascript</a><a>css</a></div>
-                            </dt>
-                        </dl>
-                    </li>
-                    <li><h3>06.27<span>2012</span></h3>
-                        <dl>
-                            <dt>HTML5语义化
-                                <div class="tag-index"><a>node</a><a>javascript</a><a>css</a></div>
-                            </dt>
-                        </dl>
-                    </li>
-                </ul>
-            </div>
+            {{/each}}
         </div>
     </div>
+    {{include './block/footer'}}
 </body>
 </html>

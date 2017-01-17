@@ -4,20 +4,28 @@
 
 const admins = require('../../models/admins')
 const posts  = require('../../models/posts')
+const config = require('../../config')
+const crypto = require('crypto')
 
 const utils    = require('../../common/utils')
-const mongoose = require('mongoose')
 
+function isEqual(password1, password2) {
+    return crypto.createHash('md5').update(password1).digest('hex') == password2
+}
+function redirect2Login() {
+    this.request.session.redirect = this.request.url
+    this.redirect('/admin/login')
+}
+
+/**
+ * 若要支持路由的权限验证，可修改路由中间件的处理函数为数组形式
+ * @param route
+ */
 module.exports = function (route) {
     /* index */
     route.get('/admin', function *(next) {
-        //if(!this.request.session.user) {
-        //    this.request.session.redirect = this.request.url
-        //    this.redirect('/admin/login')
-        //} else {
-        //    this.renderView('admin/index')
-        //}
-        this.renderView('admin/index')
+        console.log('this.redirect: ', this.redirect)
+        this.redirect('/admin/articles')
     })
 
     /* login */
@@ -32,44 +40,74 @@ module.exports = function (route) {
         var admin = yield admins.getAdmin({user_name: fields.user_name})
 
         if(!admin) {
-            var result = yield admins.createAdmin(fields)
-            console.log('Create admin: ', result.user_name)
+            this.renderJSON({code: 0, redirect: '/admin/login'})
         } else {
-            this.request.session.user = fields
-            this.redirect(this.request.session.redirect)
+            if(!isEqual(fields.pass_word, admin.pass_word)) {
+                this.renderJSON({code: 0, redirect: '/admin/login'})
+            } else {
+                this.request.session.user = admin
+                this.renderJSON({code: 200, redirect: this.request.session.redirect || '/admin/articles'})
+            }
         }
     })
 
     /* article list */
     route.get('/admin/articles', function *(next) {
-        var articles = yield posts.getPostList()
-        articles.forEach(function(article) {
-            article.tags = utils.handleTags(article.tags)
-            article.id = article._id.toString()
-        })
-        this.renderView('admin/index', {articles: articles})
+        if(!this.request.session.user) {
+            redirect2Login.call(this)
+        } else {
+            var articles = yield posts.getPostList()
+            articles.forEach(function(article) {
+                article.tags = utils.handleTags(article.tags)
+                article.id = article._id.toString()
+            })
+            this.renderView('admin/index', {articles: articles})
+        }
+
     })
 
-    /* update a article */
+    /* update article */
     route.get('/admin/article/:id/edit', function *(next) {
-        var article = yield posts.getPostById({_id: this.request.params.id})
-        this.renderView('admin/new', {article: article})
+        console.log(this.request.session.user, 11)
+        if(!this.request.session.user) {
+            redirect2Login.call(this)
+        } else {
+            var article = yield posts.getPostById({_id: this.request.params.id})
+            this.renderView('admin/new', {article: article})
+        }
+
     })
 
     route.post('/admin/article/:id/edit', function *(next) {
-        //var article = yield posts.getPostById({_id: this.request.params.id})
-        //this.renderView('admin/new', {article: article})
+        if(!this.request.session.user) {
+            redirect2Login.call(this)
+        } else {
+            var fields = this.request.body.fields
+            var article = yield posts.updatePost({_id: this.request.params.id}, fields)
+            this.renderJSON({code: 200, redirect: '/admin/articles'})
+        }
+
     })
 
-    /* create a article */
+    /* create article */
     route.get('/admin/article/new', function *(next) {
-        this.renderView('admin/new')
+        if(!this.request.session.user) {
+            redirect2Login.call(this)
+        } else {
+            this.renderView('admin/new')
+        }
+
     })
 
-    /* post a list */
+    /* post list */
     route.post('/admin/article/new', function *(next) {
-        var fields = this.request.body.fields
-        var result = yield posts.createPost(fields)
-        this.renderJSON({code: 200, redirect: '/admin/articles'})
+        if(!this.request.session.user) {
+            redirect2Login.call(this)
+        } else {
+            var fields = this.request.body.fields
+            var result = yield posts.createPost(fields)
+            this.renderJSON({code: 200, redirect: '/admin/articles'})
+        }
+
     })
 }

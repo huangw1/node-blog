@@ -2,12 +2,15 @@
 <html lang="en" class="index-page">
 <head>
     <meta charset="UTF-8">
-    <title></title>
+    <title>
+        {{if article}}
+        更新文章
+        {{else}}
+        创建文章
+        {{/if}}
+    </title>
     <link rel="stylesheet" href="/css/admin.css"/>
     <link rel="stylesheet" href="/plugin/editor/css/wangEditor.min.css"/>
-    <script src="/js/jquery.js"></script>
-    <script src="/plugin/editor/js/wangEditor.min.js"></script>
-    <script src="/js/admin.js"></script>
 </head>
 <body>
 <div class="common-header">
@@ -20,7 +23,7 @@
 </div>
 <div class="common-body">
     <div class="action-list">
-        <a href="/admin/articles" class="action">文章列表</a><a href="/admin/article/new" class="action">新建文章</a>
+        <a href="/" class="action">首页</a><a href="/admin/articles" class="action">文章列表</a><a href="/admin/article/new" class="action">新建文章</a>
     </div>
     <div class="media-body">
         <form method="post" class="post-form" action="">
@@ -50,5 +53,8 @@
         </form>
     </div>
 </div>
+<script src="/js/jquery.js"></script>
+<script src="/plugin/editor/js/wangEditor.min.js"></script>
+<script src="/js/admin.js"></script>
 </body>
 </html>

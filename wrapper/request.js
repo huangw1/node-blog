@@ -31,7 +31,6 @@ function getter(field) {
  */
 function Request(req) {
     var cookieMap = cookie.parse(req.headers.cookie || '')
-
     req.get      = getter.bind(req)
     req.cookie   = Object.assign({}, cookieMap)
     req.path     = url.parse(req.url).pathname

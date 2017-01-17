@@ -24,7 +24,10 @@ module.exports = {
         return postModel.find().lean().sort({date: -1}).exec()
     },
     getPostById: function(query) {
-        return postModel.findOne(query).exec()
+        return postModel.findOne(query).lean().exec()
+    },
+    getPostByTag: function(tag) {
+        return postModel.find({tags: new RegExp(tag, 'i')}).lean().sort({date: -1}).exec()
     },
     updatePost: function(query, data) {
         return postModel.update(query, data).exec()
