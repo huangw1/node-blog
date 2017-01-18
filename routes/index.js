@@ -39,12 +39,17 @@ module.exports = function (route) {
     /*  article */
     route.get('/article/:id', function *(next) {
         var article = yield posts.getPostById({_id: this.request.params.id})
-        article.tags = utils.handleTags(article.tags)
-        article.id = article._id.toString()
-        this.renderView('article', {
-            article: article,
-            info: Object.assign({}, config.info, {title: article.title, keywords: article.tags.join(',')})
-        })
+        if(article) {
+
+            article.tags = utils.handleTags(article.tags)
+            article.id = article._id.toString()
+            this.renderView('article', {
+                article: article,
+                info: Object.assign({}, config.info, {title: article.title, keywords: article.tags.join(',')})
+            })
+        } else {
+            this.renderView('404')
+        }
     })
 
     /* tag */
