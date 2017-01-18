@@ -13,7 +13,6 @@ function systole(){
 		elements = []
 	
 	parentH = wrapper.parent().height()
-	wrapper.parent().css({"height":101})
 	
 	setTimeout(function(){
 		
@@ -37,7 +36,12 @@ function systole(){
 }
 
 function xss2html() {
-	var content = $('.article-body'),
-		xss     = $('.content-temp').html()
-		content.html(marked(xss))
+	try {
+		var content = $('.article-body'),
+			xss     = $('.content-temp').html()
+			content.html(marked(xss))
+	} catch (exception) {
+		console.log(exception)
+	}
+
 }
