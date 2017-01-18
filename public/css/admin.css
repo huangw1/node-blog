@@ -125,7 +125,7 @@ a {
     font-size: 14px;
 }
 .common-body {
-    width:935px;
+    width:1080px;
     margin:  auto;
     padding-top: 64px;
     color: #333;
@@ -144,6 +144,9 @@ a {
     background: #ffffff;
     box-shadow: 0 1px 6px rgba(0,0,0,0.05);
     -webkit-box-shadow: 0 1px 6px rgba(0,0,0,0.05);
+}
+.action-list .full-screen {
+    margin-right: 0;
 }
 .action-list .action-submit {
     background: #ebebeb;
@@ -184,4 +187,27 @@ a {
     outline: none;
     padding: 9px 16px;
     border-bottom: 1px solid #ccc;
+}
+/* markdown */
+.markdown-container {
+    background: #EBEBEB;
+    padding-top: 4px;
+    padding-right: 2px;
+}
+
+.editor-column,
+.preview-column {
+    display: inline-block;
+    width: 49.5%;
+    height: 432px;
+    overflow: auto;
+    position: relative;
+    background-color: #fff;
+}
+.panel-editor,
+.panel-preview,
+.editor-content,
+.markdown-body
+{
+    height: 100%;
 }

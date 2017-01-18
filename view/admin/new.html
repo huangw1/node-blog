@@ -11,6 +11,7 @@
     </title>
     <link rel="stylesheet" href="/css/admin.css"/>
     <link rel="stylesheet" href="/plugin/editor/css/wangEditor.min.css"/>
+    <link href="/plugin/markdown/css/github-markdown.css" rel="stylesheet" />
 </head>
 <body>
 <div class="common-header">
@@ -24,6 +25,7 @@
 <div class="common-body">
     <div class="action-list">
         <a href="/" class="action">首页</a><a href="/admin/articles" class="action">文章列表</a><a href="/admin/article/new" class="action">新建文章</a>
+        <a href="javascript:void 0" class="action full-screen float-right">全屏</a>
     </div>
     <div class="media-body">
         <form method="post" class="post-form" action="">
@@ -32,14 +34,29 @@
                 <input type="text" name="auth" placeholder="作者" value="{{article && article.auth}}">
                 <input type="text" name="tags" placeholder="文章分类，多个以,分隔" value="{{article && article.tags}}">
             </div>
-            <div id="editor-container" class="container">
-                <div id="editor-trigger" class="editor-body">
-                </div>
-                <textarea style="display:none;" class="editor-content" name="content">
+            <div class="editor-container">
+                <!--<div id="editor-trigger" class="editor-body">-->
+                <!--</div>-->
+                <textarea style="display:none;" class="textarea-content" name="content">
                     {{if article}}
                         {{article.content}}
                     {{/if}}
                 </textarea>
+                <div class='markdown-container'>
+                    <div class='editor-column'>
+                        <div class='panel-editor'>
+                            <!--编辑区-->
+                            <div class="editor-content" id="editor"></div>
+                        </div>
+                    </div>
+                    <div class='preview-column'>
+                        <div class='panel-preview'>
+                            <!--显示区-->
+                            <div class="markdown-body"></div>
+                        </div>
+                    </div>
+
+                </div>
             </div>
             <div class="action-list">
                 <button type="submit" class="action action-submit">
@@ -54,7 +71,8 @@
     </div>
 </div>
 <script src="/js/jquery.js"></script>
-<script src="/plugin/editor/js/wangEditor.min.js"></script>
+<script src="/plugin/markdown/js/marked.js"></script>
+<script src="/plugin/markdown/js/ace.js"></script>
 <script src="/js/admin.js"></script>
 </body>
 </html>

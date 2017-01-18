@@ -38,6 +38,6 @@ function systole(){
 
 function xss2html() {
 	var content = $('.article-body'),
-		xss     = $('.content-temp')
-		content.html(xss.html().replace(/&lt;/g, '<').replace(/&gt;/g, '>'))
+		xss     = $('.content-temp').html()
+		content.html(marked(xss))
 }

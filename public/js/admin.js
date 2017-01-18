@@ -23,10 +23,10 @@ $(function() {
         var data = $(this).serialize()
 
         if(!data.match(/(^|&)user_name=([^&]*)(&|$)/)[2]) {
-            return alert('请填写用户名.')
+            return alert('请填写用户名')
         }
         if(!data.match(/(^|&)pass_word=([^&]*)(&|$)/)[2]) {
-            return alert('请填写密码.')
+            return alert('请填写密码')
         }
 
         $.ajax({
@@ -38,7 +38,7 @@ $(function() {
                 console.log('result: ', result)
                 location.href = result.redirect
             } else {
-                alert('用户名或者密码错误.')
+                alert('用户名或者密码错误')
             }
         })
 
@@ -61,16 +61,49 @@ $(function() {
     /**
      * editor
      */
-    try {
-        var editor = new wangEditor('editor-trigger'),
-            content = $('.editor-content')
-        editor.config.uploadImgUrl = '/upload'
-        editor.onchange = function () {
-            content.val(this.$txt.html())
-        }
-        editor.create()
-        editor.$txt.html(content.val())
 
+    try {
+        function fullScreen() {
+            if(!document.fullscreenElement && !document.mozFullScreenElement && !document.webkitFullscreenElement) {
+                var doc = document.documentElement;
+                if(doc.requestFullscreen) {
+                    doc.requestFullscreen()
+                } else if(doc.mozRequestFullScreen) {
+                    doc.mozRequestFullScreen()
+                } else if(doc.webkitRequestFullScreen) {
+                    doc.webkitRequestFullScreen()
+                } else if(elem.msRequestFullscreen) {
+                    elem.msRequestFullscreen()
+                };
+            } else {
+                if(document.exitFullscreen) {
+                    document.exitFullscreen()
+                } else if(document.mozCancelFullScreen) {
+                    document.mozCancelFullScreen()
+                } else if(document.webkitCancelFullScreen) {
+                    document.webkitCancelFullScreen()
+                } else if(document.msExitFullscreen) {
+                    document.msExitFullscreen()
+                }
+            }
+        }
+
+        var element = $('.full-screen')
+        element.click(fullScreen)
+
+        var editor = ace.edit('editor')
+        editor.setTheme('ace/theme/chrome')
+        editor.getSession().setMode('ace/mode/markdown')
+        editor.renderer.setShowPrintMargin(false)
+
+        var editorContent = $('.editor-content'),
+            markdownBody  = $('.markdown-body'),
+            textarea      = $('.textarea-content')
+        editorContent.keyup(function() {
+            markdownBody.html(marked(editor.getValue()))
+            textarea.val(editor.getValue())
+        })
+        textarea.val().trim() !== '' && (editor.setValue(textarea.val().trim()), markdownBody.html(marked(textarea.val().trim())))
         function postArticle(e) {
             stopDefault(e)
 
@@ -85,6 +118,8 @@ $(function() {
             }).then(function(result) {
                 if(result.code === 200) {
                     location.href = result.redirect
+                } else {
+                    alert('服务端错误')
                 }
             })
 

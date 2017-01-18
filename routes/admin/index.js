@@ -68,7 +68,6 @@ module.exports = function (route) {
 
     /* update article */
     route.get('/admin/article/:id/edit', function *(next) {
-        console.log(this.request.session.user, 11)
         if(!this.request.session.user) {
             redirect2Login.call(this)
         } else {

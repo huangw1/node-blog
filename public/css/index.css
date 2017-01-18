@@ -186,8 +186,12 @@ p {
 	padding-top: 5px;
 	padding-bottom: 10px;
 }
-
-h1, h2, h3 {
+h1 {
+	font-size: 18px;
+	padding-top: 5px;
+	padding-bottom: 10px;
+}
+h2, h3 {
 	font-size: 16px;
 	padding-top: 5px;
 	padding-bottom: 10px;
@@ -196,10 +200,12 @@ h1, h2, h3 {
 pre {
 	border-radius: 2px;
 	margin: 8px 0;
-	border: 1px dashed #ebebeb;
+	padding: 12px 24px;
+	background: #F7F7F7;
 }
 
-ul li {
+ul li,
+{
 	padding-top: 4px;
 	padding-bottom: 4px;
 }

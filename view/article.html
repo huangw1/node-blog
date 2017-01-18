@@ -6,14 +6,15 @@
         <div class="article">
             <div class="article-header">{{article.title}}</div>
             <div class="article-body">
+                <span>loading...</span>
             </div>
+            <div style="display: none" class="content-temp">{{article.content}}</div>
             <div class="tag-index">
                 tags: &nbsp;
                 {{each article.tags as tag}}
                 <a href="/tags/{{tag}}">{{tag}}</a>
                 {{/each}}
             </div>
-            <div class="content-temp" style="display: none">{{article.content}}</div>
             {{include './block/duoshuo'}}
         </div>
     </div>
