@@ -49,6 +49,7 @@ function xss(options) {
         styleTag: true,
         scriptTag: true,
         removeTag: true,
+        removeSpace: false,
         blackList: BLACKLISTATTRS
     }
     if(util.isObject(options)) {
@@ -69,7 +70,9 @@ xss.prototype.filter = function(html) {
         html = filterScriptTag(html, options)
     }
     html = filterAttr(html, options.blackList)
-    html = filterAttrSpace(html)
+    if(options.removeSpace) {
+        html = filterAttrSpace(html)
+    }
     if(options.escape) {
         html = escapeTags(html)
     }

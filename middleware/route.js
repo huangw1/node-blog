@@ -45,7 +45,6 @@ proto.middleware = function () {
             if(params) {
                 if((method === route.method || method === 'all') && (match = path.match(pathRegexp))) {
                     if(match[0] === path) {
-                        console.log('6666: ', match[0])
                         request.params = {}
                         params.forEach(function(param, index) {
                             request.params[param.slice(1)] = match[index +1]
