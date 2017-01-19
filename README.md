@@ -15,3 +15,13 @@
 7. xss过滤
 8. 视图渲染
 9. 正则路由
+
+## 安装
+```
+npm install
+cd test
+node index.js // fill test data
+```
+## 预览
+
+查看public目录下的子目录preview
