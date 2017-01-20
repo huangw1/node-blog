@@ -22,7 +22,7 @@ function xss2html() {
 	try {
 		var content = $('.article-body'),
 			xss     = $('.content-temp').html()
-			content.html(marked(xss))
+			content.html(marked(xss).replace(/&lt;/g, '<').replace(/&gt;/g, '>'))
 	} catch (exception) {
 		console.log(exception)
 	}
