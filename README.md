@@ -11,5 +11,6 @@ cd test
 node index.js // fill test data
 ```
 ## 预览
+测试地址：[http://vennoor.com](http://vennoor.com)
 
 查看public目录下的子目录preview
